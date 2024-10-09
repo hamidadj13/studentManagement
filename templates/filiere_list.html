@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des filières</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Liste des filières</h1>
+        <table>
+            <tr>
+                <th>Code</th>
+                <th>Nom</th>
+                <th>description</th>
+            </tr>
+            {% for filiere in filieres %}
+            <tr>
+                <td>{{ filiere.code }}</td>
+                <td>{{ filiere.nom }}</td>
+                <td>{{ filiere.description }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="{{ url_for('add_filiere') }}" class="button">Ajouter une filière</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ 'Modifier' if student else 'Ajouter' }} un étudiant</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ 'Modifier' if student else 'Ajouter' }} un étudiant</h1>
+        <form method="POST">
+            <input type="hidden" name="matricule" id="matricule" value="{{ student.matricule if student else '' }}" {{ 'readonly' if student }} required>
+
+            <label for="nom">Nom :</label>
+            <input type="text" name="nom" id="nom" value="{{ student.nom if student else '' }}" required>
+
+            <label for="prenom">Prénom :</label>
+            <input type="text" name="prenom" id="prenom" value="{{ student.prenom if student else '' }}" required>
+
+            <label for="age">Âge :</label>
+            <input type="text" name="age" id="age" value="{{ student.age if student else '' }}" required>
+
+            <label for="email">Email :</label>
+            <input type="email" name="email" id="email" value="{{ student.email if student else '' }}" required>
+
+            <label for="filiere">Filière :</label>
+            <select name="filiere" id="filiere" required>
+                {% for filiere in filieres %}
+                <option value="{{ filiere.code }}" {% if student and student.filiere.code == filiere.code %}selected{% endif %}>
+                    {{ filiere.nom }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <input type="submit" value="{{ 'Modifier' if student else 'Ajouter' }}">
+        </form>
+        <a href="{{ url_for('list_students') }}" class="button">Retour à la liste</a>
+    </div>
+</body>
+</html>
