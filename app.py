@@ -79,12 +79,15 @@ def list_filieres():
 
 @app.route('/filiere/add', methods=['GET', 'POST'])
 def add_filiere():
+
+    global current_code
+    
     if request.method == 'POST':
         nom = request.form['nom']
         description = request.form['description']
 
         # Générer un code automatique et incrémenter
-        code = f"MAT{current_code:04d}"  # Exemple : MAT100, MAT101, etc.
+        code = f"MAT{current_code}"  # Exemple : MAT100, MAT101, etc.
         current_code += 1  # Incrémenter le code
 
 
